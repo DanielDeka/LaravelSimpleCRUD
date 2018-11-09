@@ -26,3 +26,9 @@
         
         return redirect('passports')->with('success', 'Information has been added');
     }
+
+    public function edit($id)
+    {
+        $passport = \App\Passport::find($id);
+        return view('edit',compact('passport','id'));
+    }
