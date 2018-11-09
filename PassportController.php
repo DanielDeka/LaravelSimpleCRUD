@@ -32,3 +32,21 @@
         $passport = \App\Passport::find($id);
         return view('edit',compact('passport','id'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $passport= \App\Passport::find($id);
+        $passport->name=$request->get('name');
+        $passport->email=$request->get('email');
+        $passport->number=$request->get('number');
+        $passport->office=$request->get('office');
+        $passport->save();
+        return redirect('passports');
+    }
+
+    public function destroy($id)
+    {
+        $passport = \App\Passport::find($id);
+        $passport->delete();
+        return redirect('passports')->with('success','Information has been  deleted');
+    }
